@@ -1,8 +1,11 @@
 import pandas as pd
 import os
+from pathlib import Path
 
 # Path to collect data from the Resources folder
-file_path = r'D:\AssignmentsUOFT\python-PyBank-and-PyPoll-CH3\PyBank\Resources\budget_data.csv'
+current_directory = os.path.dirname(os.path.abspath(__file__))
+file_path = Path(current_directory, "Resources", "budget_data.csv")   
+analysis_textfile = os.path.join(current_directory, "analysis", "financial_analysis.txt")
 
 # Load the budget_data.csv file using the correct file path
 budget_data = pd.read_csv(file_path)
@@ -37,7 +40,7 @@ print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_incre
 print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_value:.2f})")
 
 # Optionally, export the results to a text file
-with open("financial_analysis.txt", "w") as file:
+with open(analysis_textfile, "w") as file:
     file.write("Financial Analysis\n")
     file.write("----------------------------\n")
     file.write(f"Total Months: {total_months}\n")
